@@ -1,6 +1,5 @@
 package org.example.tests;
 
-import org.example.BaseTest;
 import org.example.listeners.TestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -28,7 +27,7 @@ public class SearchToursTest extends BaseTest {
     }
 
     @Test
-    public void test2() {
+    public void test2(){
 
         basePage.open(URL);
         mainPage

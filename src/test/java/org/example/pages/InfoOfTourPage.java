@@ -6,17 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-public class InfoOfTour extends BasePage {
+public class InfoOfTourPage extends BasePage {
 
     @FindBy(xpath = "//div[@class=\"tour-sidebar\"]//button[contains(., 'Забронировать места')]")
     private WebElement buttonReserve;
 
-    public InfoOfTour(WebDriver driver) {
+    public InfoOfTourPage(WebDriver driver) {
         super(driver);
     }
 
-    @Step
-    public InfoOfTour switchingToPageBookYourPlace() {
+    @Step("Переход на страницу бронирования тура")
+    public InfoOfTourPage switchingToPageBookYourPlace() {
         Assert.assertTrue(buttonReserve.isDisplayed(), "Button number of tours is not displayed");
         buttonReserve.click();
         return this;

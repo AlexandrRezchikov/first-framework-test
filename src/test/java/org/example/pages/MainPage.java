@@ -52,10 +52,8 @@ public class MainPage extends BasePage {
 
     @Step("Выбор региона для поиска")
     public MainPage selectingRegion(String value) {
-        actions
-                .click(textBarRegion)
-                .sendKeys(value)
-                .perform();
+        textBarRegion.click();
+        textBarRegion.sendKeys(value);
         searchResultRegion.click();
         return this;
     }

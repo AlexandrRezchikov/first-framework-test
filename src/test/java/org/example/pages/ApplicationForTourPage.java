@@ -40,7 +40,7 @@ public class ApplicationForTourPage extends BasePage {
         super(driver);
     }
 
-    @Step
+    @Step("Проверка Title страницы бронирования тура")
     public ApplicationForTourPage checkTitle() {
         waitElementIsVisible(buttonGoToBack);
         String title = driver.getTitle();
@@ -48,7 +48,7 @@ public class ApplicationForTourPage extends BasePage {
         return this;
     }
 
-    @Step
+    @Step("Выбор дат в форме брони")
     public ApplicationForTourPage selectingDate() {
         Assert.assertTrue(barOfSelectingTourDate.isDisplayed(), "Element is not displayed");
         barOfSelectingTourDate.click();
@@ -56,7 +56,7 @@ public class ApplicationForTourPage extends BasePage {
         return this;
     }
 
-    @Step
+    @Step("Заполнение поля ФИО в форме брони")
     public ApplicationForTourPage enteringName() {
         Assert.assertTrue(textBarName.isDisplayed(), "Element is not displayed");
         textBarName.click();
@@ -64,7 +64,7 @@ public class ApplicationForTourPage extends BasePage {
         return this;
     }
 
-    @Step
+    @Step("Заполнение поля номера телефона в форме брони")
     public ApplicationForTourPage enteringPhoneNumber() {
         Assert.assertTrue(textBarPhoneNumber.isDisplayed(), "Element is not displayed");
         textBarPhoneNumber.click();
@@ -72,7 +72,7 @@ public class ApplicationForTourPage extends BasePage {
         return this;
     }
 
-    @Step
+    @Step("Заполнение поля email в форме брони")
     public ApplicationForTourPage enteringEmail() {
         Assert.assertTrue(textBarEmail.isDisplayed(), "Element is not displayed");
         textBarEmail.click();
@@ -80,14 +80,14 @@ public class ApplicationForTourPage extends BasePage {
         return this;
     }
 
-    @Step
+    @Step("Отправка заполненной формы брони")
     public ApplicationForTourPage sendApplication() {
         Assert.assertTrue(buttonSendRequest.isDisplayed(), "Button is not displayed");
         buttonSendRequest.click();
         return this;
     }
 
-    @Step
+    @Step("Проверка ошибки")
     public ApplicationForTourPage checkingErrorMessage() {
         Assert.assertTrue(errorMessageValidatingPhoneNumber.isDisplayed());
         System.out.println("Текст ошибки: " + errorMessageValidatingPhoneNumber.getText());

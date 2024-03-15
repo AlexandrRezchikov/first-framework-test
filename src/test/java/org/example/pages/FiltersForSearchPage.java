@@ -43,16 +43,16 @@ public class FiltersForSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"tour-preview\"]//span[contains(.,'Смотреть тур')]")
     private WebElement buttonWatchTheTour;
 
-    private final Actions actions;
+    private final Actions actions = new Actions(driver);
 
     public FiltersForSearchPage(WebDriver driver) {
         super(driver);
-        actions = new Actions(driver);
     }
 
     @Step("Проверка количества найденных туров")
     public FiltersForSearchPage checkingCountTours() {
         waitElementIsVisible(buttonNumberOfTours);
+        buttonNumberOfTours.click();
         Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
@@ -65,10 +65,7 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Выбор дополнительных фильтров")
     public FiltersForSearchPage selectFilters() {
         Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
-        actions
-                .moveToElement(filterApartments)
-                .click()
-                .perform();
+        filterApartments.click();
         Assert.assertTrue(subFilterApartments.isDisplayed(), "Element is not displayed");
         subFilterApartments.click();
         Assert.assertTrue(filterComfortOfTheApartments.isDisplayed(), "Element is not displayed");
@@ -86,6 +83,7 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Изменение фильтра стоимости туров")
     public FiltersForSearchPage moveSliderPrice() {
         actions.moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
+        Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         return this;
     }
 

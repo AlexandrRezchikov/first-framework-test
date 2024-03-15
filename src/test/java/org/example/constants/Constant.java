@@ -4,8 +4,8 @@ public class Constant {
 
     public static class TimeoutVariable {
 
-        public static final int IMPLICIT_WAIT = 6; // неявное ожидание
-        public static final int EXPLICIT_WAIT = 10; // время ожидания элемента
+        public static final int IMPLICIT_WAIT = 6;
+        public static final int EXPLICIT_WAIT = 10;
     }
 
     public static class InputValue {

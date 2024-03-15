@@ -1,7 +1,7 @@
 package org.example.listeners;
 
 import io.qameta.allure.Attachment;
-import org.example.BaseTest;
+import org.example.tests.BaseTest;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -14,21 +14,22 @@ public class TestListener extends BaseTest implements ITestListener {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public void saveScreenshotPNG(WebDriver driver) {
-        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    @Attachment(value = "Screenshot of failure", type = "image/png")
+    public byte[] saveScreenshotPNG(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     @Attachment(value = "{0}", type = "text/plain")
-    public static void saveTextLog(String message) {
+    public static String saveTextLog(String message) {
+        return message;
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
+        System.out.println(getTestMethodName(iTestResult) + " failed and screenshot attached to the report!");
 
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = ((BaseTest) testClass).getDriver();
+        WebDriver driver = ((BaseTest) testClass).driver;
 
         if (driver != null) {
             System.out.println("Screenshot captured for test case: " + getTestMethodName(iTestResult));

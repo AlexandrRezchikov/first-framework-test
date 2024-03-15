@@ -29,5 +29,4 @@ public class BasePage {
                 .until(ExpectedConditions.visibilityOf(element));
         return element;
     }
-
 }
