@@ -1,6 +1,6 @@
-package org.example.regexs;
+package org.example.framework.utils;
 
-public class regexForNumberOfTours {
+public class RegexForNumberOfTours {
 
     public static int regexForNumberOfTours(String count) {
 

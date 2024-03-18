@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <listeners>
-        <listener class-name="org.example.listeners.TestListener"></listener>
+        <listener class-name="org.example.framework.listeners.FiledTestListener"/>
     </listeners>
     <test name="Unit Test">
         <classes>

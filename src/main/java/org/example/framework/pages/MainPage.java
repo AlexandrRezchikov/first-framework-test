@@ -1,6 +1,7 @@
-package org.example.pages;
+package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.example.framework.utils.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -45,6 +46,7 @@ public class MainPage extends BasePage {
 
     @Step("Проверка Title")
     public MainPage checkTitle() {
+        AllureLogger.debug("Check title");
         String title = driver.getTitle();
         Assert.assertTrue(title.contains("Большая Страна — Все туры по России"));
         return this;
@@ -52,6 +54,7 @@ public class MainPage extends BasePage {
 
     @Step("Выбор региона для поиска")
     public MainPage selectingRegion(String value) {
+        AllureLogger.debug("Input value: " + value);
         textBarRegion.click();
         textBarRegion.sendKeys(value);
         searchResultRegion.click();
@@ -60,6 +63,7 @@ public class MainPage extends BasePage {
 
     @Step("Выбор вида отдыха")
     public MainPage selectingViewRecreation() {
+        AllureLogger.debug("Selecting view recreation");
         textBarVieRecreation.click();
         waitElementIsVisible(viewRecreation).click();
         return this;
@@ -67,6 +71,7 @@ public class MainPage extends BasePage {
 
     @Step("Выбор даты для тура")
     public MainPage selectingDate() {
+        AllureLogger.debug("Selecting date of tour");
         textBarDate.click();
         waitElementIsVisible(tourDates).click();
         return this;
@@ -74,12 +79,14 @@ public class MainPage extends BasePage {
 
     @Step("Нажатие кнопки поиска")
     public MainPage clickButtonOfSearch() {
+        AllureLogger.debug("Clicking button for search of tours");
         waitElementIsVisible(buttonSearch).click();
         return this;
     }
 
     @Step("Выбор дат на март для тура")
     public MainPage selectingDatesOfMarch() {
+        AllureLogger.debug("Selecting date of march");
         textBarDate.click();
         waitElementIsVisible(firstDateTour);
         Assert.assertTrue(firstDateTour.isDisplayed(), "Element is not displayed");

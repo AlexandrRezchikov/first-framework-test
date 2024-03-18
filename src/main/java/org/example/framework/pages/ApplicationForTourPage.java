@@ -1,9 +1,10 @@
-package org.example.pages;
+package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.example.framework.utils.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBy;;
 import org.testng.Assert;
 
 import java.util.ResourceBundle;
@@ -42,6 +43,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Проверка Title страницы бронирования тура")
     public ApplicationForTourPage checkTitle() {
+        AllureLogger.debug("Checking title page");
         waitElementIsVisible(buttonGoToBack);
         String title = driver.getTitle();
         Assert.assertTrue(title.contains("Заявка на тур | Большая Страна"));
@@ -50,6 +52,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Выбор дат в форме брони")
     public ApplicationForTourPage selectingDate() {
+        AllureLogger.debug("Selecting date");
         Assert.assertTrue(barOfSelectingTourDate.isDisplayed(), "Element is not displayed");
         barOfSelectingTourDate.click();
         dateOfTour.click();
@@ -58,6 +61,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля ФИО в форме брони")
     public ApplicationForTourPage enteringName() {
+        AllureLogger.debug("Input Name: " + resource.getString("name"));
         Assert.assertTrue(textBarName.isDisplayed(), "Element is not displayed");
         textBarName.click();
         textBarName.sendKeys(resource.getString("name"));
@@ -66,6 +70,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля номера телефона в форме брони")
     public ApplicationForTourPage enteringPhoneNumber() {
+        AllureLogger.debug("Input phone number: " + resource.getString("phoneNumber"));
         Assert.assertTrue(textBarPhoneNumber.isDisplayed(), "Element is not displayed");
         textBarPhoneNumber.click();
         textBarPhoneNumber.sendKeys(resource.getString("phoneNumber"));
@@ -74,6 +79,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля email в форме брони")
     public ApplicationForTourPage enteringEmail() {
+        AllureLogger.debug("Input email: " + resource.getString("mail"));
         Assert.assertTrue(textBarEmail.isDisplayed(), "Element is not displayed");
         textBarEmail.click();
         textBarEmail.sendKeys(resource.getString("mail"));
@@ -82,6 +88,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Отправка заполненной формы брони")
     public ApplicationForTourPage sendApplication() {
+        AllureLogger.debug("Clicking to button send");
         Assert.assertTrue(buttonSendRequest.isDisplayed(), "Button is not displayed");
         buttonSendRequest.click();
         return this;
@@ -89,6 +96,7 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Проверка ошибки")
     public ApplicationForTourPage checkingErrorMessage() {
+        AllureLogger.info("Checking message");
         Assert.assertTrue(errorMessageValidatingPhoneNumber.isDisplayed());
         System.out.println("Текст ошибки: " + errorMessageValidatingPhoneNumber.getText());
         return this;

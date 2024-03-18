@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.framework.common;
 
 public class Config {
 

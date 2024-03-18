@@ -1,6 +1,8 @@
-package org.example.pages;
+package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.example.framework.utils.AllureLogger;
+import org.example.framework.utils.RegexForNumberOfTours;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.util.Set;
-
-import static org.example.regexs.regexForNumberOfTours.regexForNumberOfTours;
 
 public class FiltersForSearchPage extends BasePage {
 
@@ -51,6 +51,7 @@ public class FiltersForSearchPage extends BasePage {
 
     @Step("Проверка количества найденных туров")
     public FiltersForSearchPage checkingCountTours() {
+        AllureLogger.debug("Checking count tour");
         waitElementIsVisible(buttonNumberOfTours);
         buttonNumberOfTours.click();
         Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
@@ -58,12 +59,13 @@ public class FiltersForSearchPage extends BasePage {
         System.out.println(numberOfTours);
         int numberOfCard = driver.findElements(cardOfTour).size();
         System.out.println("Карточек туров на странице " + numberOfCard);
-        Assert.assertEquals(numberOfCard, regexForNumberOfTours(numberOfTours));
+        Assert.assertEquals(numberOfCard, RegexForNumberOfTours.regexForNumberOfTours(numberOfTours));
         return this;
     }
 
     @Step("Выбор дополнительных фильтров")
     public FiltersForSearchPage selectFilters() {
+        AllureLogger.debug("Select filters");
         Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         filterApartments.click();
         Assert.assertTrue(subFilterApartments.isDisplayed(), "Element is not displayed");
@@ -82,6 +84,7 @@ public class FiltersForSearchPage extends BasePage {
 
     @Step("Изменение фильтра стоимости туров")
     public FiltersForSearchPage moveSliderPrice() {
+        AllureLogger.debug("Changing price of tour");
         actions.moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
         Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         return this;
@@ -89,6 +92,7 @@ public class FiltersForSearchPage extends BasePage {
 
     @Step("Просмотр информации о туре")
     public FiltersForSearchPage watchInfoOfTour() {
+        AllureLogger.debug("Watching info of tour");
         Assert.assertTrue(buttonWatchTheTour.isDisplayed(), "Element is not displayed");
         buttonWatchTheTour.click();
         return this;
@@ -96,6 +100,7 @@ public class FiltersForSearchPage extends BasePage {
 
     @Step("Переключение на новый фрейм")
     public FiltersForSearchPage switchingFrame() {
+        AllureLogger.debug("Switching frame");
         String currentWindowHandle = driver.getWindowHandle();
         Set<String> windowHandles = driver.getWindowHandles();
         String nextWindowHandle = "";

@@ -1,18 +1,20 @@
 package org.example.tests;
 
-import org.example.listeners.TestListener;
+import org.example.framework.listeners.FiledTestListener;
+import org.example.framework.utils.AllureLogger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static org.example.constants.Constant.InputValue.NAME_REGION;
-import static org.example.constants.Constant.Urls.URL;
+import static org.example.framework.constants.Constant.InputValue.NAME_REGION;
+import static org.example.framework.constants.Constant.Urls.URL;
 
-@Listeners({TestListener.class})
+@Listeners({FiledTestListener.class})
 public class SearchToursTest extends BaseTest {
 
     @Test
     public void test1() {
 
+        AllureLogger.debug("Test 1");
         basePage.open(URL);
         mainPage
                 .checkTitle()
@@ -27,8 +29,9 @@ public class SearchToursTest extends BaseTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
 
+        AllureLogger.debug("Test 2");
         basePage.open(URL);
         mainPage
                 .checkTitle()
@@ -45,6 +48,7 @@ public class SearchToursTest extends BaseTest {
     @Test
     public void test3() {
 
+        AllureLogger.debug("Test 3");
         basePage.open(URL);
         mainPage
                 .checkTitle()

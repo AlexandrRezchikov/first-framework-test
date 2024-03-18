@@ -1,7 +1,8 @@
-package org.example.pages;
+package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.constants.Constant;
+import org.example.framework.constants.Constant;
+import org.example.framework.utils.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,12 +16,14 @@ public class BasePage {
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
+        AllureLogger.info("Init");
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @Step
+    @Step("Open URL")
     public void open(String url) {
+        AllureLogger.debug("Open url");
         driver.get(url);
     }
 
