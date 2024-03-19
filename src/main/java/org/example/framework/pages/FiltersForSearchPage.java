@@ -1,8 +1,9 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.utils.AllureLogger;
-import org.example.framework.utils.RegexForNumberOfTours;
+import org.example.framework.common.CommonActions;
+import org.example.framework.logger.AllureLogger;
+import org.example.framework.utils.Regex;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,9 @@ import java.util.Set;
 
 public class FiltersForSearchPage extends BasePage {
 
-    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
+//    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
+    @FindBy(xpath = "//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]")
+    private WebElement cardOfTour;
 
     @FindBy(xpath = ".//button[contains(.,'Найден')]") // кнопка с количеством найденных туров
     private WebElement buttonNumberOfTours;
@@ -43,7 +46,7 @@ public class FiltersForSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"tour-preview\"]//span[contains(.,'Смотреть тур')]")
     private WebElement buttonWatchTheTour;
 
-    private final Actions actions = new Actions(driver);
+    private final Actions actions = CommonActions.getActions();
 
     public FiltersForSearchPage(WebDriver driver) {
         super(driver);
@@ -57,9 +60,9 @@ public class FiltersForSearchPage extends BasePage {
         Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
-        int numberOfCard = driver.findElements(cardOfTour).size();
+        int numberOfCard = driver.findElements((By) cardOfTour).size();
         System.out.println("Карточек туров на странице " + numberOfCard);
-        Assert.assertEquals(numberOfCard, RegexForNumberOfTours.regexForNumberOfTours(numberOfTours));
+        Assert.assertEquals(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
     }
 

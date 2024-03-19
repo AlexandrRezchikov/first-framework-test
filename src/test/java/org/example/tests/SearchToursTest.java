@@ -1,12 +1,13 @@
 package org.example.tests;
 
+import org.example.common.BaseTest;
 import org.example.framework.listeners.FiledTestListener;
-import org.example.framework.utils.AllureLogger;
+import org.example.framework.logger.AllureLogger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static org.example.framework.constants.Constant.InputValue.NAME_REGION;
-import static org.example.framework.constants.Constant.Urls.URL;
+import static org.example.framework.config.Config.NAME_REGION;
+import static org.example.framework.config.Config.URL;
 
 @Listeners({FiledTestListener.class})
 public class SearchToursTest extends BaseTest {

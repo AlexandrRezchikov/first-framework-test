@@ -1,19 +1,23 @@
 package org.example.framework.common;
 
-import org.example.framework.constants.Constant;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.time.Duration;
 
-import static org.example.framework.common.Config.PLATFORM_AND_BROWSER;
+import static org.example.framework.config.Config.IMPLICIT_WAIT;
+import static org.example.framework.config.Config.PLATFORM_AND_BROWSER;
 
 public class CommonActions {
 
-    public static WebDriver createDriver() {
-        WebDriver driver = null;
+    private static WebDriver driver;
+
+    private static Actions actions;
+
+    private static void createDriver() {
 
         switch (PLATFORM_AND_BROWSER) {
             case "win_chrome":
@@ -26,7 +30,22 @@ public class CommonActions {
                 Assert.fail("Incorrect platform or browser name: " + PLATFORM_AND_BROWSER);
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constant.TimeoutVariable.IMPLICIT_WAIT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
+        actions = new Actions(driver);
+    }
+
+    public static void setDriver() {
+        if (driver == null)
+            createDriver();
+    }
+
+    public static WebDriver getDriver() {
+        setDriver();
         return driver;
     }
+
+    public static Actions getActions() {
+        return actions;
+    }
+
 }

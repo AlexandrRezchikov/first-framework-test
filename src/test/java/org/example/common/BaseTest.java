@@ -1,9 +1,9 @@
-package org.example.tests;
+package org.example.common;
 
 import org.example.framework.common.CommonActions;
 import org.example.framework.pages.ApplicationForTourPage;
 import org.example.framework.pages.InfoOfTourPage;
-import org.example.framework.utils.AllureLogger;
+import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -13,8 +13,8 @@ import org.example.framework.pages.BasePage;
 import org.example.framework.pages.FiltersForSearchPage;
 import org.example.framework.pages.MainPage;
 
-import static org.example.framework.common.Config.CLEAR_COOKIES_AND_STORAGE;
-import static org.example.framework.common.Config.HOLD_BROWSER_OPEN;
+import static org.example.framework.config.Config.CLEAR_COOKIES_AND_STORAGE;
+import static org.example.framework.config.Config.HOLD_BROWSER_OPEN;
 
 public class BaseTest {
 
@@ -28,7 +28,6 @@ public class BaseTest {
     @BeforeMethod
     public void setUp(ITestContext context) {
         AllureLogger.info("Set Up");
-        driver = CommonActions.createDriver();
         context.setAttribute("WebDriver", driver);
         basePage = new BasePage(driver);
         mainPage = new MainPage(driver);

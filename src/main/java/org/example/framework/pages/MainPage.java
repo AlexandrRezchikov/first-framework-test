@@ -1,10 +1,9 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.utils.AllureLogger;
+import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -37,12 +36,11 @@ public class MainPage extends BasePage {
     @FindBy(xpath = ".//div[@class=\"dayContainer\"]/span[@aria-label=\"Март 25, 2024\"]")
     private WebElement secondDateTour;
 
-    private final Actions actions;
 
     public MainPage(WebDriver driver) {
         super(driver);
-        actions = new Actions(driver);
     }
+
 
     @Step("Проверка Title")
     public MainPage checkTitle() {

@@ -1,8 +1,11 @@
-package org.example.framework.utils;
+package org.example.framework.logger;
 
 import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 public class AllureLogger {
 
@@ -23,8 +26,13 @@ public class AllureLogger {
         attachLogToAllure("[ERROR] " + message);
     }
 
+    @Attachment(value = "Screenshot of {message}", type = "image/png")
+    public static byte[] saveScreenshotPNG(WebDriver driver, String message) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
     @Attachment(value = "{message}", type = "text/plain")
-    private static String attachLogToAllure(String message) {
+    public static String attachLogToAllure(String message) {
         return message;
     }
 }

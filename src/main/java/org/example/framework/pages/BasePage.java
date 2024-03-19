@@ -1,8 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.constants.Constant;
-import org.example.framework.utils.AllureLogger;
+import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -10,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.example.framework.config.Config.EXPLICIT_WAIT;
 
 public class BasePage {
 
@@ -28,7 +29,7 @@ public class BasePage {
     }
 
     protected WebElement waitElementIsVisible(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(Constant.TimeoutVariable.EXPLICIT_WAIT))
+        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOf(element));
         return element;
     }

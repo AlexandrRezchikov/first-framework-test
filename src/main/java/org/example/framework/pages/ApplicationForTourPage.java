@@ -1,7 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.utils.AllureLogger;
+import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;;
