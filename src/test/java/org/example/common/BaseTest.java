@@ -27,6 +27,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(ITestContext context) {
+        driver = CommonActions.getDriver();
         AllureLogger.info("Set Up");
         context.setAttribute("WebDriver", driver);
         basePage = new BasePage(driver);
