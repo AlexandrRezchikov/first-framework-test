@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.example</groupId>
     <artifactId>first-framework-test</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <aspectj.version>1.9.21.1</aspectj.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
@@ -18,14 +13,13 @@
         <log4j-api.version>2.23.1</log4j-api.version>
         <allure-java-commons.version>2.25.0</allure-java-commons.version>
         <allure-commandline.version>2.27.0</allure-commandline.version>
-        <aspectjweaver.version>1.9.21.2</aspectjweaver.version>
+        <aspectjweaver.version>1.9.21</aspectjweaver.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <suiteXml>testng.xml</suiteXml>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -37,7 +31,6 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -69,16 +62,14 @@
             <version>${aspectjweaver.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
+                    <argLine> -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar" </argLine>
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
@@ -93,7 +84,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
+                        <version>1.9.21</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -108,5 +99,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

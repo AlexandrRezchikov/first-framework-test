@@ -121,6 +121,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: commons-codec:commons-codec:1.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.tika:tika-core:2.9.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.freemarker:freemarker:2.3.32" level="project" />
-    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.21.2" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.21" level="project" />
   </component>
 </module>

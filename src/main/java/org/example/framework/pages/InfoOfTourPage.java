@@ -1,6 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.example.framework.common.CommonActions;
 import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,10 +12,6 @@ public class InfoOfTourPage extends BasePage {
 
     @FindBy(xpath = "//div[@class=\"tour-sidebar\"]//button[contains(., 'Забронировать места')]")
     private WebElement buttonReserve;
-
-    public InfoOfTourPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Step("Переход на страницу бронирования тура")
     public InfoOfTourPage switchingToPageBookYourPlace() {

@@ -37,8 +37,7 @@ public class ApplicationForTourPage extends BasePage {
     @FindBy(xpath = ".//span[contains(., 'Вернуться')]")
     private WebElement buttonGoToBack;
 
-    public ApplicationForTourPage(WebDriver driver) {
-        super(driver);
+    public ApplicationForTourPage() {
     }
 
     @Step("Проверка Title страницы бронирования тура")

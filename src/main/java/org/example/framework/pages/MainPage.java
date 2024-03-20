@@ -37,9 +37,7 @@ public class MainPage extends BasePage {
     private WebElement secondDateTour;
 
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
+
 
 
     @Step("Проверка Title")

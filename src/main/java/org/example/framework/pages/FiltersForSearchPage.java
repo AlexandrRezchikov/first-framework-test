@@ -5,9 +5,7 @@ import org.example.framework.common.CommonActions;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.Regex;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -15,9 +13,9 @@ import java.util.Set;
 
 public class FiltersForSearchPage extends BasePage {
 
-//    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
-    @FindBy(xpath = "//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]")
-    private WebElement cardOfTour;
+    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
+//    @FindBy(xpath = "//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]")
+//    private WebElement cardOfTour;
 
     @FindBy(xpath = ".//button[contains(.,'Найден')]") // кнопка с количеством найденных туров
     private WebElement buttonNumberOfTours;
@@ -31,7 +29,7 @@ public class FiltersForSearchPage extends BasePage {
     @FindBy(xpath = "//div[text()=\" Комфорт проживания \"]")
     private WebElement filterComfortOfTheApartments;
 
-    @FindBy(xpath = "//div[@class=\"collapse__body\"]//span[contains(., 'Высокий')]")
+    @FindBy(xpath = "//div[@class=\"collapse__body\"]//span[contains(., 'Высокий1')]")
     private WebElement subFilterComfortOfTheApartments;
 
     @FindBy(css = "#filter-difficulty use")
@@ -46,12 +44,6 @@ public class FiltersForSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"tour-preview\"]//span[contains(.,'Смотреть тур')]")
     private WebElement buttonWatchTheTour;
 
-    private final Actions actions = CommonActions.getActions();
-
-    public FiltersForSearchPage(WebDriver driver) {
-        super(driver);
-    }
-
     @Step("Проверка количества найденных туров")
     public FiltersForSearchPage checkingCountTours() {
         AllureLogger.debug("Checking count tour");
@@ -60,7 +52,7 @@ public class FiltersForSearchPage extends BasePage {
         Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
-        int numberOfCard = driver.findElements((By) cardOfTour).size();
+        int numberOfCard = CommonActions.getDriver().findElements(cardOfTour).size();
         System.out.println("Карточек туров на странице " + numberOfCard);
         Assert.assertEquals(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
@@ -88,7 +80,7 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Изменение фильтра стоимости туров")
     public FiltersForSearchPage moveSliderPrice() {
         AllureLogger.debug("Changing price of tour");
-        actions.moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
+        CommonActions.getActions().moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
         Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         return this;
     }
@@ -104,8 +96,8 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Переключение на новый фрейм")
     public FiltersForSearchPage switchingFrame() {
         AllureLogger.debug("Switching frame");
-        String currentWindowHandle = driver.getWindowHandle();
-        Set<String> windowHandles = driver.getWindowHandles();
+        String currentWindowHandle = CommonActions.getDriver().getWindowHandle();
+        Set<String> windowHandles = CommonActions.getDriver().getWindowHandles();
         String nextWindowHandle = "";
         for (String handle : windowHandles) {
             if (!handle.equals(currentWindowHandle)) {
@@ -113,7 +105,7 @@ public class FiltersForSearchPage extends BasePage {
                 break;
             }
         }
-        driver.switchTo().window(nextWindowHandle);
+        CommonActions.getDriver().switchTo().window(nextWindowHandle);
         return this;
     }
 

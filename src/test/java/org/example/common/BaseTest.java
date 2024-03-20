@@ -29,20 +29,20 @@ public class BaseTest {
     public void setUp(ITestContext context) {
         driver = CommonActions.getDriver();
         AllureLogger.info("Set Up");
-        context.setAttribute("WebDriver", driver);
-        basePage = new BasePage(driver);
-        mainPage = new MainPage(driver);
-        filtersForSearchPage = new FiltersForSearchPage(driver);
-        infoOfTour = new InfoOfTourPage(driver);
-        applicationForTourPage = new ApplicationForTourPage(driver);
+        context.setAttribute("WebDriver", CommonActions.getDriver());
+        basePage = new BasePage();
+        mainPage = new MainPage();
+        filtersForSearchPage = new FiltersForSearchPage();
+        infoOfTour = new InfoOfTourPage();
+        applicationForTourPage = new ApplicationForTourPage();
     }
 
     @AfterMethod
     public void clearCookiesAndLocalStorage() {
         AllureLogger.info("Clear cookies and local storage");
         if (CLEAR_COOKIES_AND_STORAGE) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-            driver.manage().deleteAllCookies();
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) CommonActions.getDriver();
+            CommonActions.getDriver().manage().deleteAllCookies();
             javascriptExecutor.executeScript("window.sessionStorage.clear()");
         }
     }
@@ -51,7 +51,7 @@ public class BaseTest {
     public void close() {
         AllureLogger.info("Close");
         if (HOLD_BROWSER_OPEN) {
-            driver.quit();
+            CommonActions.getDriver().quit();
         }
     }
 }
