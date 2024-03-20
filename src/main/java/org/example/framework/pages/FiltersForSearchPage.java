@@ -1,7 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.common.CommonActions;
+import org.example.framework.common.CommonDriverActions;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.Regex;
 import org.openqa.selenium.By;
@@ -29,7 +29,7 @@ public class FiltersForSearchPage extends BasePage {
     @FindBy(xpath = "//div[text()=\" Комфорт проживания \"]")
     private WebElement filterComfortOfTheApartments;
 
-    @FindBy(xpath = "//div[@class=\"collapse__body\"]//span[contains(., 'Высокий1')]")
+    @FindBy(xpath = "//div[@class=\"collapse__body\"]//span[contains(., 'Высокий')]")
     private WebElement subFilterComfortOfTheApartments;
 
     @FindBy(css = "#filter-difficulty use")
@@ -52,7 +52,7 @@ public class FiltersForSearchPage extends BasePage {
         Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
-        int numberOfCard = CommonActions.getDriver().findElements(cardOfTour).size();
+        int numberOfCard = CommonDriverActions.getDriver().findElements(cardOfTour).size();
         System.out.println("Карточек туров на странице " + numberOfCard);
         Assert.assertEquals(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
@@ -80,7 +80,7 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Изменение фильтра стоимости туров")
     public FiltersForSearchPage moveSliderPrice() {
         AllureLogger.debug("Changing price of tour");
-        CommonActions.getActions().moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
+        CommonDriverActions.getActions().moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
         Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         return this;
     }
@@ -96,8 +96,8 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Переключение на новый фрейм")
     public FiltersForSearchPage switchingFrame() {
         AllureLogger.debug("Switching frame");
-        String currentWindowHandle = CommonActions.getDriver().getWindowHandle();
-        Set<String> windowHandles = CommonActions.getDriver().getWindowHandles();
+        String currentWindowHandle = CommonDriverActions.getDriver().getWindowHandle();
+        Set<String> windowHandles = CommonDriverActions.getDriver().getWindowHandles();
         String nextWindowHandle = "";
         for (String handle : windowHandles) {
             if (!handle.equals(currentWindowHandle)) {
@@ -105,7 +105,7 @@ public class FiltersForSearchPage extends BasePage {
                 break;
             }
         }
-        CommonActions.getDriver().switchTo().window(nextWindowHandle);
+        CommonDriverActions.getDriver().switchTo().window(nextWindowHandle);
         return this;
     }
 

@@ -1,7 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.common.CommonActions;
+import org.example.framework.common.CommonDriverActions;
 import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +19,7 @@ public class BasePage {
 
     public BasePage() {
         AllureLogger.info("Init");
-        this.driver = CommonActions.getDriver();
+        this.driver = CommonDriverActions.getDriver();
         PageFactory.initElements(driver, this);
     }
 

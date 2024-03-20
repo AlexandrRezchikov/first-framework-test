@@ -1,9 +1,10 @@
 package org.example.common;
 
-import org.example.framework.common.CommonActions;
+import org.example.framework.common.CommonDriverActions;
 import org.example.framework.pages.ApplicationForTourPage;
 import org.example.framework.pages.InfoOfTourPage;
 import org.example.framework.logger.AllureLogger;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -27,9 +28,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(ITestContext context) {
-        driver = CommonActions.getDriver();
+        driver = CommonDriverActions.getDriver();
         AllureLogger.info("Set Up");
-        context.setAttribute("WebDriver", CommonActions.getDriver());
+        context.setAttribute("WebDriver", CommonDriverActions.getDriver());
         basePage = new BasePage();
         mainPage = new MainPage();
         filtersForSearchPage = new FiltersForSearchPage();
@@ -41,8 +42,8 @@ public class BaseTest {
     public void clearCookiesAndLocalStorage() {
         AllureLogger.info("Clear cookies and local storage");
         if (CLEAR_COOKIES_AND_STORAGE) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) CommonActions.getDriver();
-            CommonActions.getDriver().manage().deleteAllCookies();
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) CommonDriverActions.getDriver();
+            CommonDriverActions.getDriver().manage().deleteAllCookies();
             javascriptExecutor.executeScript("window.sessionStorage.clear()");
         }
     }
@@ -51,7 +52,7 @@ public class BaseTest {
     public void close() {
         AllureLogger.info("Close");
         if (HOLD_BROWSER_OPEN) {
-            CommonActions.getDriver().quit();
+            CommonDriverActions.getDriver().quit();
         }
     }
 }

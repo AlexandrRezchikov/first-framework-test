@@ -11,7 +11,7 @@ import java.time.Duration;
 import static org.example.framework.config.Config.IMPLICIT_WAIT;
 import static org.example.framework.config.Config.PLATFORM_AND_BROWSER;
 
-public class CommonActions {
+public class CommonDriverActions {
 
     private static WebDriver driver;
 
