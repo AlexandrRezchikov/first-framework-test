@@ -3,6 +3,7 @@ package org.example.framework.logger;
 import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.framework.common.CommonDriverActions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -27,8 +28,8 @@ public class AllureLogger {
     }
 
     @Attachment(value = "Screenshot of {message}", type = "image/png")
-    public static byte[] saveScreenshotPNG(WebDriver driver, String message) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public static byte[] saveScreenshotPNG(String message) {
+        return ((TakesScreenshot) CommonDriverActions.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Attachment(value = "{message}", type = "text/plain")

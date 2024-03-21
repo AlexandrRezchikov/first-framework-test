@@ -18,7 +18,7 @@ public class BasePage {
     public WebDriver driver;
 
     public BasePage() {
-        AllureLogger.info("Init");
+        AllureLogger.info(String.format("Init %s page", this.getClass().getSimpleName()));
         this.driver = CommonDriverActions.getDriver();
         PageFactory.initElements(driver, this);
     }

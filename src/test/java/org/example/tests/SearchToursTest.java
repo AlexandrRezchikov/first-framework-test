@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static org.example.framework.config.Config.NAME_REGION;
 import static org.example.framework.config.Config.URL;
 
-@Listeners({FiledTestListener.class})
+//@Listeners({FiledTestListener.class})
 public class SearchToursTest extends BaseTest {
 
     @Test

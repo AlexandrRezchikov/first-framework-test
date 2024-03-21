@@ -49,7 +49,7 @@ public class FiltersForSearchPage extends BasePage {
         AllureLogger.debug("Checking count tour");
         waitElementIsVisible(buttonNumberOfTours);
         buttonNumberOfTours.click();
-        Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
+        Assert.assertFalse(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
         int numberOfCard = CommonDriverActions.getDriver().findElements(cardOfTour).size();

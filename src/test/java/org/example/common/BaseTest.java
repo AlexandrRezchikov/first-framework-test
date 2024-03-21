@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.example.framework.pages.BasePage;
@@ -38,7 +39,7 @@ public class BaseTest {
         applicationForTourPage = new ApplicationForTourPage();
     }
 
-    @AfterMethod
+//    @AfterMethod
     public void clearCookiesAndLocalStorage() {
         AllureLogger.info("Clear cookies and local storage");
         if (CLEAR_COOKIES_AND_STORAGE) {
@@ -49,10 +50,18 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void close() {
+    public void close(ITestResult result) {
+        clearCookiesAndLocalStorage();
+        if (!result.isSuccess()) {
+            AllureLogger.saveScreenshotPNG("Test failed!");
+            String methodName = result.getMethod().getConstructorOrMethod().getName();
+            AllureLogger.attachLogToAllure(methodName + " failed and screenshot attached to the report!");
+        }
         AllureLogger.info("Close");
         if (HOLD_BROWSER_OPEN) {
-            CommonDriverActions.getDriver().quit();
+            CommonDriverActions.quit();
         }
     }
+
+
 }

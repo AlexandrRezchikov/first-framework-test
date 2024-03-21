@@ -48,4 +48,9 @@ public class CommonDriverActions {
         return actions;
     }
 
+    public static void quit() {
+        driver.quit();
+        driver = null;
+    }
+
 }
