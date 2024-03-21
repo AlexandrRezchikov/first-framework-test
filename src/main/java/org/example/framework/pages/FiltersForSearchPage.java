@@ -9,13 +9,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.Set;
 
 public class FiltersForSearchPage extends BasePage {
 
-    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
-//    @FindBy(xpath = "//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]")
-//    private WebElement cardOfTour;
+//    private final By cardOfTour = By.xpath("//section[@id=\"group-initial\"]//div[@class=\"as-col tour-previews__col\"]"); // карточка тура
+    @FindBy(xpath = "//section[@id='\"'group-initial\"]//div[@class=\"as-col tour-previews__col\"]")
+    private List<WebElement> cardOfTour;
 
     @FindBy(xpath = ".//button[contains(.,'Найден')]") // кнопка с количеством найденных туров
     private WebElement buttonNumberOfTours;
@@ -52,7 +53,7 @@ public class FiltersForSearchPage extends BasePage {
         Assert.assertFalse(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
-        int numberOfCard = CommonDriverActions.getDriver().findElements(cardOfTour).size();
+        int numberOfCard = cardOfTour.size();
         System.out.println("Карточек туров на странице " + numberOfCard);
         Assert.assertEquals(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
