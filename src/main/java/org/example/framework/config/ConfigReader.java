@@ -6,8 +6,8 @@ public class ConfigReader {
 
     public static ResourceBundle config = ResourceBundle.getBundle("config");
 
-    public static String platformAndBrowser() {
-        return config.getString("platform_and_browser");
+    public static String browser() {
+        return config.getString("browser");
     }
 
     public static boolean clearCookiesAndStorage() {

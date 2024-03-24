@@ -38,7 +38,7 @@ public class SearchToursTest extends BaseTest {
                 .checkTitle()
                 .selectingRegion(NAME_REGION)
                 .selectingViewRecreation()
-                .selectingDatesOfMarch()
+                .selectingDate()
                 .clickButtonOfSearch();
         filtersForSearchPage
                 .checkingCountTours()

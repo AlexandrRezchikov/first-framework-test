@@ -3,7 +3,7 @@ package org.example.framework.config;
 public class Config {
 
     // ОС и браузер
-    public static final String PLATFORM_AND_BROWSER = ConfigReader.platformAndBrowser();
+    public static final String BROWSER = ConfigReader.browser();
 
     // Очистка cookies
     // if true - очистить cookies
@@ -20,6 +20,5 @@ public class Config {
     public static final int IMPLICIT_WAIT = ConfigReader.implicitWait();
 
     public static final int EXPLICIT_WAIT = ConfigReader.explicitWait();
-
 
 }

@@ -1,7 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
-import org.example.framework.common.CommonDriverActions;
+import org.example.framework.common.DriverActions;
 import org.example.framework.logger.AllureLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,8 +18,8 @@ public class BasePage {
     public WebDriver driver;
 
     public BasePage() {
-        AllureLogger.info("Init");
-        this.driver = CommonDriverActions.getDriver();
+        AllureLogger.info(String.format("Init %s page", this.getClass().getSimpleName()));
+        this.driver = DriverActions.getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -32,6 +32,18 @@ public class BasePage {
     protected WebElement waitElementIsVisible(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOf(element));
+        return element;
+    }
+
+    protected WebElement waitTextToBePresentInElement(WebElement element) {
+        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.textToBePresentInElement(element, "Найден"));
+        return element;
+    }
+
+    protected WebElement waitElementToBeClickable(WebElement element) {
+        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.elementToBeClickable(element));
         return element;
     }
 }

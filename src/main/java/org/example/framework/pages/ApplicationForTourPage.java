@@ -2,16 +2,12 @@ package org.example.framework.pages;
 
 import io.qameta.allure.Step;
 import org.example.framework.logger.AllureLogger;
-import org.openqa.selenium.WebDriver;
+import org.example.framework.utils.DataGeneration;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;;
 import org.testng.Assert;
 
-import java.util.ResourceBundle;
-
 public class ApplicationForTourPage extends BasePage {
-
-    private static final ResourceBundle resource = ResourceBundle.getBundle("text");
 
     @FindBy(css = ".as-input__append")
     private WebElement barOfSelectingTourDate;
@@ -37,9 +33,6 @@ public class ApplicationForTourPage extends BasePage {
     @FindBy(xpath = ".//span[contains(., 'Вернуться')]")
     private WebElement buttonGoToBack;
 
-    public ApplicationForTourPage() {
-    }
-
     @Step("Проверка Title страницы бронирования тура")
     public ApplicationForTourPage checkTitle() {
         AllureLogger.debug("Checking title page");
@@ -60,28 +53,31 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля ФИО в форме брони")
     public ApplicationForTourPage enteringName() {
-        AllureLogger.debug("Input Name: " + resource.getString("name"));
+        String fullName = DataGeneration.generateFullName();
+        AllureLogger.debug("Input Name: " + fullName);
         Assert.assertTrue(textBarName.isDisplayed(), "Element is not displayed");
         textBarName.click();
-        textBarName.sendKeys(resource.getString("name"));
+        textBarName.sendKeys(fullName);
         return this;
     }
 
     @Step("Заполнение поля номера телефона в форме брони")
     public ApplicationForTourPage enteringPhoneNumber() {
-        AllureLogger.debug("Input phone number: " + resource.getString("phoneNumber"));
+        String phoneNumber = DataGeneration.generatePhoneNumber();
+        AllureLogger.debug("Input phone number: " + phoneNumber);
         Assert.assertTrue(textBarPhoneNumber.isDisplayed(), "Element is not displayed");
         textBarPhoneNumber.click();
-        textBarPhoneNumber.sendKeys(resource.getString("phoneNumber"));
+        textBarPhoneNumber.sendKeys(phoneNumber);
         return this;
     }
 
     @Step("Заполнение поля email в форме брони")
     public ApplicationForTourPage enteringEmail() {
-        AllureLogger.debug("Input email: " + resource.getString("mail"));
+        String email = DataGeneration.generateEmail();
+        AllureLogger.debug("Input email: " + email);
         Assert.assertTrue(textBarEmail.isDisplayed(), "Element is not displayed");
         textBarEmail.click();
-        textBarEmail.sendKeys(resource.getString("mail"));
+        textBarEmail.sendKeys(email);
         return this;
     }
 
