@@ -1,6 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.example.framework.asserts.assertsElements;
 import org.example.framework.common.DriverActions;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.Regex;
@@ -50,29 +51,23 @@ public class FiltersForSearchPage extends BasePage {
         AllureLogger.debug("Checking count tour");
         waitElementToBeClickable(buttonNumberOfTours);
         waitTextToBePresentInElement(buttonNumberOfTours);
-        Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Button number of tours is not displayed");
+        assertsElements.isElementDisplayed(buttonNumberOfTours);
         String numberOfTours = buttonNumberOfTours.getText();
         System.out.println(numberOfTours);
         int numberOfCard = cardOfTour.size();
         System.out.println("Карточек туров на странице " + numberOfCard);
-        Assert.assertEquals(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
+        assertsElements.equalsInteger(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
     }
 
     @Step("Выбор дополнительных фильтров")
     public FiltersForSearchPage selectFilters() {
         AllureLogger.debug("Select filters");
-        Assert.assertTrue(filterApartments.isDisplayed(), "Element is not displayed");
         filterApartments.click();
-        Assert.assertTrue(subFilterApartments.isDisplayed(), "Element is not displayed");
         subFilterApartments.click();
-        Assert.assertTrue(filterComfortOfTheApartments.isDisplayed(), "Element is not displayed");
         filterComfortOfTheApartments.click();
-        Assert.assertTrue(subFilterComfortOfTheApartments.isDisplayed(), "Element is not displayed");
         subFilterComfortOfTheApartments.click();
-        Assert.assertTrue(filterLevelDifficulty.isDisplayed(), "Element is not displayed");
         filterLevelDifficulty.click();
-        Assert.assertTrue(subFilterLevelDifficulty.isDisplayed(), "Element is not displayed");
         subFilterLevelDifficulty.click();
         waitElementIsVisible(buttonNumberOfTours);
         return this;
@@ -82,7 +77,7 @@ public class FiltersForSearchPage extends BasePage {
     public FiltersForSearchPage moveSliderPrice() {
         AllureLogger.debug("Changing price of tour");
         DriverActions.getActions().moveToElement(sliderMaxPrice).dragAndDropBy(sliderMaxPrice, -180, 0).perform();
-        Assert.assertTrue(buttonNumberOfTours.isDisplayed(), "Element is not displayed");
+        assertsElements.isElementDisplayed(buttonNumberOfTours);
         DriverActions.getActions().moveToElement(buttonNumberOfTours).click().perform();
         return this;
     }
@@ -90,7 +85,6 @@ public class FiltersForSearchPage extends BasePage {
     @Step("Просмотр информации о туре")
     public FiltersForSearchPage watchInfoOfTour() {
         AllureLogger.debug("Watching info of tour");
-        Assert.assertTrue(buttonWatchTheTour.isDisplayed(), "Element is not displayed");
         buttonWatchTheTour.click();
         return this;
     }

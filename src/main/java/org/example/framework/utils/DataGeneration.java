@@ -9,8 +9,8 @@ public class DataGeneration {
     private static final Faker faker = new Faker();
 
     public static String generateFullName() {
-        Faker fakerName = new Faker(new Locale("RU"));
-        return fakerName.name().fullName();
+        Faker ruFaker = new Faker(new Locale("ru"));
+        return ruFaker.name().fullName();
     }
 
     public static String generatePhoneNumber() {

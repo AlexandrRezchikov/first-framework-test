@@ -4,8 +4,10 @@ import io.qameta.allure.Step;
 import org.example.framework.logger.AllureLogger;
 import org.example.framework.utils.DataGeneration;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
+import org.example.framework.asserts.assertsElements;
 
 public class ApplicationForTourPage extends BasePage {
 
@@ -45,7 +47,7 @@ public class ApplicationForTourPage extends BasePage {
     @Step("Выбор дат в форме брони")
     public ApplicationForTourPage selectingDate() {
         AllureLogger.debug("Selecting date");
-        Assert.assertTrue(barOfSelectingTourDate.isDisplayed(), "Element is not displayed");
+        assertsElements.isElementDisplayed(barOfSelectingTourDate);
         barOfSelectingTourDate.click();
         dateOfTour.click();
         return this;
@@ -55,8 +57,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringName() {
         String fullName = DataGeneration.generateFullName();
         AllureLogger.debug("Input Name: " + fullName);
-        Assert.assertTrue(textBarName.isDisplayed(), "Element is not displayed");
-        textBarName.click();
+        assertsElements.isElementDisplayedAndClick(textBarName);
         textBarName.sendKeys(fullName);
         return this;
     }
@@ -65,8 +66,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringPhoneNumber() {
         String phoneNumber = DataGeneration.generatePhoneNumber();
         AllureLogger.debug("Input phone number: " + phoneNumber);
-        Assert.assertTrue(textBarPhoneNumber.isDisplayed(), "Element is not displayed");
-        textBarPhoneNumber.click();
+        assertsElements.isElementDisplayedAndClick(textBarPhoneNumber);
         textBarPhoneNumber.sendKeys(phoneNumber);
         return this;
     }
@@ -75,8 +75,7 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage enteringEmail() {
         String email = DataGeneration.generateEmail();
         AllureLogger.debug("Input email: " + email);
-        Assert.assertTrue(textBarEmail.isDisplayed(), "Element is not displayed");
-        textBarEmail.click();
+        assertsElements.isElementDisplayedAndClick(textBarEmail);
         textBarEmail.sendKeys(email);
         return this;
     }
@@ -84,15 +83,14 @@ public class ApplicationForTourPage extends BasePage {
     @Step("Отправка заполненной формы брони")
     public ApplicationForTourPage sendApplication() {
         AllureLogger.debug("Clicking to button send");
-        Assert.assertTrue(buttonSendRequest.isDisplayed(), "Button is not displayed");
-        buttonSendRequest.click();
+        assertsElements.isElementDisplayedAndClick(buttonSendRequest);
         return this;
     }
 
     @Step("Проверка ошибки")
     public ApplicationForTourPage checkingErrorMessage() {
         AllureLogger.info("Checking message");
-        Assert.assertTrue(errorMessageValidatingPhoneNumber.isDisplayed());
+        assertsElements.isElementDisplayed(errorMessageValidatingPhoneNumber);
         System.out.println("Текст ошибки: " + errorMessageValidatingPhoneNumber.getText());
         return this;
     }
